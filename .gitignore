@@ -1,0 +1,11 @@
+node_modules/
+dist/
+build/
+*.log
+*.zip
+.env
+.DS_Store
+Thumbs.db
+tmp/
+server-installs/
+assets/fonts/chinese-rocks.otf

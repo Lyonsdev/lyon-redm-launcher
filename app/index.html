@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lyon RedM Launcher</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="titlebar">
+        <div class="brand">
+          <img src="../assets/logo.png" alt="Lyon RedM Launcher" />
+          <div>
+            <h1>Lyon RedM Launcher</h1>
+            <p id="adminStatus">Inicializando</p>
+          </div>
+        </div>
+        <nav class="tabs" aria-label="Secciones">
+          <button class="tab active" data-panel="setup">Servidor</button>
+          <button class="tab" data-panel="advanced">Avanzado</button>
+          <button class="tab" data-panel="installations">Instalados</button>
+        </nav>
+        <div class="window-actions">
+          <div id="languagePicker" class="language-picker">
+            <button id="languageButton" class="language-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <img id="languageFlag" src="../assets/flags/es.png" alt="" />
+              <span id="languageLabel">ES Español</span>
+              <span class="language-caret">⌄</span>
+            </button>
+            <div id="languageMenu" class="language-menu" role="listbox" aria-label="Language"></div>
+          </div>
+          <button id="discordBtn" class="icon-link" title="Discord">
+            <img src="../assets/discordlogo.webp" alt="Discord" />
+          </button>
+          <button id="lyonBtn" class="icon-link" title="Lyon Scripts">
+            <img src="../assets/lyonlogo.png" alt="Lyon Scripts" />
+          </button>
+          <button id="minimizeBtn" class="window-btn" title="Minimizar">-</button>
+          <button id="closeBtn" class="window-btn close" title="Cerrar">x</button>
+        </div>
+      </header>
+
+      <main class="stage">
+        <section class="content">
+          <section id="setupPanel" class="panel active">
+            <div class="section-title">
+              <h2>Framework</h2>
+              <span id="frameworkStatus">RSG</span>
+            </div>
+            <div id="frameworkGrid" class="framework-grid"></div>
+
+            <div class="split">
+              <label class="field wide">
+                <span>Carpeta</span>
+                <div class="path-row">
+                  <input id="installPath" type="text" spellcheck="false" />
+                  <button id="selectFolderBtn" class="small-btn">Elegir</button>
+                </div>
+              </label>
+              <div class="field">
+                <span>Artifact</span>
+                <select id="artifactSelect" class="artifact-native-select" tabindex="-1" aria-hidden="true">
+                  <option value="">Cargando artifacts</option>
+                </select>
+                <div id="artifactDropdown" class="artifact-dropdown">
+                  <button id="artifactDropdownButton" class="artifact-dropdown-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="artifactDropdownLabel">Cargando artifacts</span>
+                    <span class="artifact-dropdown-caret">⌄</span>
+                  </button>
+                  <div id="artifactDropdownMenu" class="artifact-dropdown-menu" role="listbox" aria-label="Artifact"></div>
+                </div>
+              </div>
+            </div>
+
+            <label id="manualArtifactWrap" class="field hidden">
+              <span>URL artifact</span>
+              <input id="manualArtifactUrl" type="url" spellcheck="false" placeholder="https://runtime.fivem.net/.../server.7z" />
+            </label>
+
+            <div class="split three">
+              <label class="field">
+                <span>Nombre</span>
+                <input id="serverName" type="text" value="Lyon RedM Server" />
+              </label>
+              <label class="field">
+                <span>Licencia Cfx</span>
+                <input id="licenseKey" type="password" placeholder="cfxk_..." />
+              </label>
+              <label class="field">
+                <span>Slots</span>
+                <input id="maxClients" type="number" min="1" max="2048" value="48" />
+              </label>
+            </div>
+          </section>
+
+          <section id="advancedPanel" class="panel">
+            <div class="section-title">
+              <h2>Base de Datos</h2>
+              <span id="databaseStatus">Pendiente</span>
+            </div>
+
+            <div class="option-row">
+              <label class="toggle">
+                <input id="autoSql" type="checkbox" checked />
+                <span></span>
+                Instalar MariaDB si falta
+              </label>
+              <label class="toggle">
+                <input id="openFirewall" type="checkbox" checked />
+                <span></span>
+                Abrir firewall
+              </label>
+              <label class="toggle danger">
+                <input id="exposeDatabase" type="checkbox" />
+                <span></span>
+                Abrir 3306
+              </label>
+              <label class="toggle">
+                <input id="reuseDatabase" type="checkbox" checked />
+                <span></span>
+                Usar DB existente
+              </label>
+            </div>
+
+            <div class="split four">
+              <label class="field">
+                <span>Host</span>
+                <input id="dbHost" type="text" value="127.0.0.1" />
+              </label>
+              <label class="field">
+                <span>Puerto SQL</span>
+                <input id="dbPort" type="number" min="1" value="3306" />
+              </label>
+              <label class="field">
+                <span>Usuario</span>
+                <input id="dbUser" type="text" value="root" />
+              </label>
+              <label class="field">
+                <span>Password</span>
+                <input id="dbPassword" type="password" />
+              </label>
+            </div>
+
+            <div class="split three">
+              <label class="field">
+                <span>Database</span>
+                <input id="dbName" type="text" value="rsg_redm" />
+              </label>
+              <label class="field">
+                <span>Puerto RedM</span>
+                <input id="gamePort" type="number" min="1" value="30120" />
+              </label>
+              <label class="field">
+                <span>Puerto txAdmin</span>
+                <input id="txAdminPort" type="number" min="1" value="40120" />
+              </label>
+            </div>
+
+            <div class="split two">
+              <label class="field">
+                <span>Steam Web API</span>
+                <input id="steamWebApiKey" type="password" placeholder="Opcional" />
+              </label>
+              <label class="field">
+                <span>Admin identifier</span>
+                <input id="adminPrincipal" type="text" placeholder="license:xxxxxxxx" />
+              </label>
+            </div>
+          </section>
+
+          <section id="installationsPanel" class="panel">
+            <div class="section-title">
+              <h2>Instalados</h2>
+              <span id="installationCount">0</span>
+            </div>
+            <div id="installationsList" class="installations-list"></div>
+          </section>
+
+          <section class="progress-area">
+            <div class="section-title">
+              <h2>Progreso</h2>
+              <span id="overallStatus">Listo</span>
+            </div>
+            <div class="install-progress">
+              <div class="progress-copy">
+                <strong id="progressTitle">Esperando instalación</strong>
+                <span id="progressDescription">Selecciona framework, carpeta y artifact para preparar el servidor.</span>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div id="progressFill"></div>
+              </div>
+            </div>
+            <div id="stepList" class="step-list"></div>
+            <pre id="logOutput" class="log-output"></pre>
+          </section>
+        </section>
+
+        <aside class="avatar-panel">
+          <div class="avatar-glow"></div>
+          <img id="avatarImage" src="../assets/avatarinicio.png" alt="" />
+        </aside>
+      </main>
+
+      <footer class="actionbar">
+        <span id="versionText">v0.1.0</span>
+        <div class="action-buttons">
+          <button id="openFolderBtn" class="secondary-btn" disabled>Carpeta</button>
+          <button id="txAdminBtn" class="secondary-btn" disabled>txAdmin</button>
+          <button id="startBtn" class="primary-btn green" disabled>Iniciar</button>
+          <button id="installBtn" class="primary-btn">Instalar</button>
+        </div>
+      </footer>
+    </div>
+
+    <dialog id="confirmDialog" class="modal">
+      <form method="dialog">
+        <h3 id="modalTitle">Confirmar</h3>
+        <p id="modalBody"></p>
+        <div class="modal-actions">
+          <button id="modalCancel" value="cancel" class="secondary-btn">Cancelar</button>
+          <button id="modalConfirm" value="confirm" class="primary-btn">Continuar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

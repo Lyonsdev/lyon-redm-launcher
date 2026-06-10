@@ -1,9 +1,9 @@
 {
   "name": "lyon-redm-launcher",
   "version": "0.1.0",
-  "description": "Open source RedM server launcher and installer for RSG, VORP and RedEM:RP.",
+  "description": "Source-available non-commercial RedM server launcher and installer for RSG, VORP and RedEM:RP.",
   "author": "Lyon Scripts",
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "homepage": "https://github.com/Lyonsdev/lyon-redm-launcher#readme",
   "main": "src/main.js",
   "type": "commonjs",
